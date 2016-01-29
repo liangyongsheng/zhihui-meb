@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+	http://www.springframework.org/schema/util
+	http://www.springframework.org/schema/util/spring-util-3.0.xsd">
+	<!---->
+	<bean id="meb.add" class="com.zhihui.meb.api.bo.MebAddBo"></bean>
+	<bean id="meb.get" class="com.zhihui.meb.api.bo.MebGetBo"></bean>
+	<bean id="meb.update" class="com.zhihui.meb.api.bo.MebUpdateBo"></bean>
+	<!---->
+	<bean id="meb.property.add" class="com.zhihui.meb.api.bo.MebPropertyAddBo"></bean>
+	<bean id="meb.property.delete" class="com.zhihui.meb.api.bo.MebPropertyDeleteBo"></bean>
+	<bean id="meb.property.get" class="com.zhihui.meb.api.bo.MebPropertyGetBo"></bean>
+	<bean id="meb.property.update" class="com.zhihui.meb.api.bo.MebPropertyUpdateBo"></bean>
+	<!---->
+	<bean id="meb.asset.add" class="com.zhihui.meb.api.bo.MebAssetAddBo"></bean>
+	<bean id="meb.asset.get" class="com.zhihui.meb.api.bo.MebAssetGetBo"></bean>
+	<bean id="meb.asset.update" class="com.zhihui.meb.api.bo.MebAssetUpdateBo"></bean>
+	<!---->
+	<bean id="meb.asset.ownership.add" class="com.zhihui.meb.api.bo.MebAssetOwnershipAddBo"></bean>
+	<bean id="meb.asset.ownership.delete" class="com.zhihui.meb.api.bo.MebAssetOwnershipDeleteBo"></bean>
+	<bean id="meb.asset.ownership.get" class="com.zhihui.meb.api.bo.MebAssetOwnershipGetBo"></bean>
+	<bean id="meb.asset.ownership.use" class="com.zhihui.meb.api.bo.MebAssetOwnershipUseBo"></bean>
+	<!---->
+	<bean id="meb.asset.point.ownership.add" class="com.zhihui.meb.api.bo.MebAssetPointOwnershipAddBo"></bean>
+	<bean id="meb.asset.point.ownership.get" class="com.zhihui.meb.api.bo.MebAssetPointOwnershipGetBo"></bean>
+	<bean id="meb.asset.point.ownership.summary" class="com.zhihui.meb.api.bo.MebAssetPointOwnershipSummaryBo"></bean>
+	<bean id="meb.asset.point.ownership.use" class="com.zhihui.meb.api.bo.MebAssetPointOwnershipUseBo"></bean>
+</beans>

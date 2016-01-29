@@ -1,0 +1,237 @@
+package com.zhihui.meb.dao;
+
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Stack;
+
+import org.hibernate.HibernateException;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+import org.springframework.orm.hibernate3.HibernateTemplate;
+
+import com.zhihui.util.MyContext;
+
+/**
+ * <b style="color:red">Big Bug here, do not use!</b><br/>
+ * please read and revise.
+ */
+public class MyTransactionStack {
+	private static Map<Long, Stack<MyTransactionStack>> mpTransactionStacks = new HashMap<Long, Stack<MyTransactionStack>>();
+	private HibernateTemplate hibernateTemplate;
+	private Session session;
+	private Transaction transaction;
+	private Object invoker;
+	private String invokerClassName;
+	private String invokerMethodName;
+	private static int TRYCNT = 30;
+
+	public static Session getCurrentSession() {
+		long threadId = Thread.currentThread().getId();
+		Stack<MyTransactionStack> myTransactions = mpTransactionStacks.get(threadId);
+		MyTransactionStack myTransactionLast = myTransactions == null || myTransactions.isEmpty() ? null : myTransactions.lastElement();
+		if (myTransactionLast == null)
+			return null;
+		else
+			return myTransactionLast.session;
+	}
+
+	private MyTransactionStack() {
+	}
+
+	/**
+	 * <b style="color:red">Big Bug here, do not use!</b><br/>
+	 * 
+	 * @param curInvoker
+	 * @throws HibernateException
+	 */
+	public static void beginTransaction(Object curInvoker) throws HibernateException {
+		long threadId = Thread.currentThread().getId();
+		String curInvokerMethodName = null;
+		MyTransactionStack myTransaction = null;
+
+		if (curInvoker == null || curInvoker.getClass().getName().matches("java\\.lang\\.[\\S\\s]{0,}"))
+			throw new HibernateException("invoker is null or invoker is java.lang.* type");
+
+		// information of invoker
+		StackTraceElement[] ses = new StackTraceElement[0];
+		try {
+			ses = Thread.currentThread().getStackTrace();
+		} catch (Throwable e) {
+		}
+		for (int i = 0; i < ses.length; i++) {
+			if (ses[i] != null && ses[i].getClassName().equals(MyTransactionStack.class.getName()) && i + 1 < ses.length && ses[i + 1].getClassName().equals(curInvoker.getClass().getName()))
+				curInvokerMethodName = ses[i + 1].getMethodName();
+		}
+
+		Stack<MyTransactionStack> myTransactions = mpTransactionStacks.get(threadId);
+		boolean isExisted = false;
+		if (curInvoker != null && myTransactions != null && !myTransactions.isEmpty()) {
+			Iterator<MyTransactionStack> itr = myTransactions.iterator();
+			while (itr.hasNext()) {
+				MyTransactionStack tmp = itr.next();
+				if (tmp.invoker != null && tmp.invoker == curInvoker // same object reference;
+						&& tmp.invokerClassName != null && tmp.invokerClassName.equals(curInvoker.getClass().getName())//
+						&& tmp.invokerMethodName != null && tmp.invokerMethodName.equals(curInvokerMethodName)) {
+					isExisted = true;
+					break;
+				}
+			}
+		}
+		if (isExisted)
+			throw new HibernateException("already have began");
+
+		MyTransactionStack myTransactionLast = myTransactions == null || myTransactions.isEmpty() ? null : myTransactions.lastElement();
+		HibernateTemplate hibernateTemplate = myTransactionLast == null ? null : myTransactionLast.hibernateTemplate;
+		Session session = myTransactionLast == null ? null : myTransactionLast.session;
+		Transaction transaction = myTransactionLast == null ? null : myTransactionLast.transaction;
+		// hibernateTemplate
+		if (hibernateTemplate == null) {
+			try {
+				hibernateTemplate = (HibernateTemplate) MyContext.getRootApplicationContext().getBean("hibernateTemplate");
+			} catch (Throwable e) {
+				throw new HibernateException(e);
+			}
+			if (hibernateTemplate == null)
+				throw new HibernateException("hibernateTemplate is null");
+		}
+
+		// session, transaction
+		int i = 0;
+		while (transaction == null && i < MyTransactionStack.TRYCNT) {
+			try {
+				if (session != null)
+					transaction = session.beginTransaction();
+				else {
+					session = hibernateTemplate.getSessionFactory().openSession();
+					transaction = session.beginTransaction();
+				}
+			} catch (Throwable e) {
+			}
+
+			if (transaction == null) {
+				try {
+					Thread.currentThread().wait(6 * 1000);
+				} catch (Throwable ec) {
+				}
+			}
+			i++;
+		}
+
+		if (transaction != null) {
+			myTransaction = new MyTransactionStack();
+			myTransaction.hibernateTemplate = hibernateTemplate;
+			myTransaction.session = session;
+			myTransaction.transaction = transaction;
+			myTransaction.invoker = curInvoker;
+			myTransaction.invokerClassName = curInvoker.getClass().getName();
+			myTransaction.invokerMethodName = curInvokerMethodName;
+			Stack<MyTransactionStack> ms = mpTransactionStacks.get(threadId);
+			if (ms == null)
+				ms = new Stack<MyTransactionStack>();
+			ms.push(myTransaction);
+			mpTransactionStacks.put(threadId, ms);
+		} else
+			throw new HibernateException("can not open a transaction");
+	}
+
+	/**
+	 * <b style="color:red">Big Bug here, do not use!</b><br/>
+	 * 
+	 * @param curInvoker
+	 * @throws HibernateException
+	 */
+	public static void endTransaction(Object curInvoker) throws HibernateException {
+		long threadId = Thread.currentThread().getId();
+		String curInvokerMethodName = null;
+
+		if (curInvoker == null || curInvoker.getClass().getName().matches("java\\.lang\\.[\\S\\s]{0,}"))
+			throw new HibernateException("invoker is null or invoker is java.lang.* type");
+
+		// information of invoker
+		StackTraceElement[] ses = new StackTraceElement[0];
+		try {
+			ses = Thread.currentThread().getStackTrace();
+		} catch (Throwable e) {
+		}
+		for (int i = 0; i < ses.length; i++) {
+			if (ses[i] != null && ses[i].getClassName().equals(MyTransactionStack.class.getName()) && i + 1 < ses.length && ses[i + 1].getClassName().equals(curInvoker.getClass().getName()))
+				curInvokerMethodName = ses[i + 1].getMethodName();
+		}
+
+		Stack<MyTransactionStack> myTransactions = mpTransactionStacks.get(threadId);
+		MyTransactionStack myTransaction = myTransactions == null || myTransactions.isEmpty() ? null : myTransactions.peek();
+		MyTransactionStack myTransactionLast = myTransactions == null || myTransactions.isEmpty() ? null : myTransactions.lastElement();
+		if (myTransaction == null)
+			return;
+
+		// 两个为null，或两个不为null但相等
+		if (!(curInvoker == null && myTransaction.invoker == null || curInvoker != null && myTransaction != null && curInvoker == myTransaction.invoker)) // same object reference
+			throw new HibernateException("nested transaction");
+		if (!(curInvoker.getClass().getName() == null && myTransaction.invokerClassName == null || curInvoker.getClass().getName() != null && myTransaction.invokerClassName != null && curInvoker.getClass().getName().equals(myTransaction.invokerClassName)))
+			throw new HibernateException("nested transaction");
+		if (!(curInvokerMethodName == null && myTransaction.invokerMethodName == null || curInvokerMethodName != null && myTransaction.invokerMethodName != null && curInvokerMethodName.equals(myTransaction.invokerMethodName)))
+			throw new HibernateException("nested transaction");
+
+		// same object reference
+		if (myTransaction == myTransactionLast) {
+			try {
+				if (myTransaction.transaction != null) {
+					myTransaction.transaction.commit();
+					try {
+						if (myTransaction.session != null)
+							myTransaction.session.close();
+					} catch (Throwable e) {
+					}
+					myTransaction.session = null;
+					myTransaction.transaction = null;
+				}
+				myTransactions.pop();
+			} catch (Throwable e) {
+				rollbackTransaction();
+				throw new HibernateException(e);
+			}
+		}
+	}
+
+	/**
+	 * <b style="color:red">Big Bug here, do not use!</b><br/>
+	 */
+	public static void rollbackTransaction() {
+		long threadId = Thread.currentThread().getId();
+		Stack<MyTransactionStack> myTransactions = mpTransactionStacks.get(threadId);
+		MyTransactionStack myTransaction = myTransactions == null || myTransactions.isEmpty() ? null : myTransactions.pop();
+		if (myTransaction == null)
+			return;
+
+		try {
+			if (myTransaction.transaction != null) {
+				myTransaction.transaction.rollback();
+				try {
+					if (myTransaction.session != null)
+						myTransaction.session.close();
+				} catch (Throwable e) {
+				}
+				myTransaction.session = null;
+				myTransaction.transaction = null;
+			}
+		} catch (Throwable e) {
+		}
+	}
+
+	/**
+	 * <b style="color:red">Big Bug here, do not use!</b><br/>
+	 * 
+	 * @param arg0
+	 */
+	public static void setTimeoutOnTransaction(int arg0) {
+		long threadId = Thread.currentThread().getId();
+		Stack<MyTransactionStack> myTransactions = mpTransactionStacks.get(threadId);
+		MyTransactionStack myTransaction = myTransactions.isEmpty() ? null : myTransactions.peek();
+		if (myTransaction == null)
+			return;
+
+		if (myTransaction.transaction != null)
+			myTransaction.transaction.setTimeout(arg0);
+	}
+}
