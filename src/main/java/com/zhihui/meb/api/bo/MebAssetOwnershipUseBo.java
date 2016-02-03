@@ -46,8 +46,6 @@ public class MebAssetOwnershipUseBo extends ApiBo<MebAssetOwnershipUseRequest> {
 			if (mebAssetModel.getMebAssetTypeId() == 1)
 				throw new BusinessException("积分权益是不通过此类方法操作的，请用meb.asset.point.ownership.*方法");
 
-			mebAssetOwnershipModel.setTarPartnerId(this.apiRequest.getTarPartnerId());
-			mebAssetOwnershipModel.setTarChainId(this.apiRequest.getTarChainId());
 			mebAssetOwnershipModel.setTarOrderId(this.apiRequest.getTarOrderId());
 			mebAssetOwnershipModel.setFlag(2);
 			mebAssetOwnershipModel.setLastReviseTime(new Timestamp((new Date()).getTime()));

@@ -47,8 +47,6 @@ public class MebAssetPointOwnershipAddBo extends ApiBo<MebAssetPointOwnershipAdd
 			mebAssetPointOwnershipModel.setValidBeginDate(new java.sql.Date(this.apiRequest.getValidBeginDate().getTime()));
 			mebAssetPointOwnershipModel.setValidEndDate(new java.sql.Date(this.apiRequest.getValidEndDate().getTime()));
 			mebAssetPointOwnershipModel.setSellerId(this.apiRequest.getSellerId());
-			mebAssetPointOwnershipModel.setOrigPartnerId(this.apiRequest.getOrigPartnerId());
-			mebAssetPointOwnershipModel.setOrigChainId(this.apiRequest.getOrigChainId());
 			mebAssetPointOwnershipModel.setOrigOrderId(this.apiRequest.getOrigOrderId());
 			mebAssetPointOwnershipModel.setFlag(1);
 			mebAssetPointOwnershipModel.setExtraInfo(this.apiRequest.getExtraInfo());

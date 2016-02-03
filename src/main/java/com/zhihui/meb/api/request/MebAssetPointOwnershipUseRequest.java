@@ -29,8 +29,6 @@ public class MebAssetPointOwnershipUseRequest extends ApiRequest<MebAssetPointOw
 	private Integer point;
 	private Date beginDate;
 	private Date endDate;
-	private Integer tarPartnerId;
-	private Integer tarChainId;
 	private Long tarOrderId;
 	private String extraInfo;
 	private String remark;
@@ -65,22 +63,6 @@ public class MebAssetPointOwnershipUseRequest extends ApiRequest<MebAssetPointOw
 
 	public void setEndDate(Date endDate) {
 		this.endDate = endDate;
-	}
-
-	public Integer getTarPartnerId() {
-		return tarPartnerId;
-	}
-
-	public void setTarPartnerId(Integer tarPartnerId) {
-		this.tarPartnerId = tarPartnerId;
-	}
-
-	public Integer getTarChainId() {
-		return tarChainId;
-	}
-
-	public void setTarChainId(Integer tarChainId) {
-		this.tarChainId = tarChainId;
 	}
 
 	public Long getTarOrderId() {
@@ -129,12 +111,6 @@ public class MebAssetPointOwnershipUseRequest extends ApiRequest<MebAssetPointOw
 
 		if (this.endDate == null)
 			throw new CheckIllicitValueException("field: endDate, value is illicit");
-
-		if (this.tarPartnerId == null || this.tarPartnerId <= 0)
-			throw new CheckIllicitValueException("field: tarPartnerId, value is illicit");
-
-		if (this.tarChainId == null || this.tarChainId <= 0)
-			throw new CheckIllicitValueException("field: tarChainId, value is illicit");
 
 		if (this.tarOrderId == null || this.tarOrderId <= 0)
 			throw new CheckIllicitValueException("field: tarOrderId, value is illicit");

@@ -36,8 +36,6 @@ public class TestMebAssetPointOwnershipUseRequest {
 			t.setMebId(1L);
 			t.setPoint(7);
 			t.setRemark("备");
-			t.setTarPartnerId(23);
-			t.setTarChainId(23);
 			t.setTarOrderId(243255L);
 
 			// for XML

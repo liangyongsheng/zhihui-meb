@@ -124,6 +124,7 @@ public class MebGetBo extends ApiBo<MebGetRequest> {
 			rsp.setMebTypeId(mebModel.getMebTypeId());
 			rsp.setMebTypeName(mebModel.getMebTypeName());
 			rsp.setName(mebModel.getName());
+			rsp.setPassword(mebModel.getPassword());
 			rsp.setGender(mebModel.getGender());
 			rsp.setBirthday(mebModel.getBirthday() == null ? null : new Date(mebModel.getBirthday().getTime()));
 			rsp.setFlag(mebModel.getFlag());
@@ -153,7 +154,7 @@ public class MebGetBo extends ApiBo<MebGetRequest> {
 					rsp.getMebProperties().add(mp);
 				}
 			}
-			
+
 			rsp.setSuccess(true);
 		} catch (Throwable e) {
 			throw new BusinessException(e);

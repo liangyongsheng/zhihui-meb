@@ -25,6 +25,7 @@ import com.zhihui.meb.api.response.MebAddResponse;
 @JsonAutoDetect(creatorVisibility = Visibility.NONE, fieldVisibility = Visibility.ANY, getterVisibility = Visibility.NONE, isGetterVisibility = Visibility.NONE, setterVisibility = Visibility.NONE)
 public class MebAddRequest extends ApiRequest<MebAddResponse> {
 	private String name;
+	private String password;
 	private Integer channelSellerId;
 	private Integer sellerId;
 	private String idCard; // only for mainland
@@ -38,6 +39,14 @@ public class MebAddRequest extends ApiRequest<MebAddResponse> {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	public Integer getChannelSellerId() {
@@ -101,6 +110,9 @@ public class MebAddRequest extends ApiRequest<MebAddResponse> {
 	public void checkApiParams() throws CheckException {
 		if (MyStringUtils.isEmpty(this.name))
 			throw new CheckEmptyException("field: name is empty");
+
+		if (MyStringUtils.isEmpty(this.password))
+			throw new CheckEmptyException("field: password is empty");
 
 		if (this.sellerId == null || this.sellerId <= 0)
 			throw new CheckIllicitValueException("field: sellerId is illicit");

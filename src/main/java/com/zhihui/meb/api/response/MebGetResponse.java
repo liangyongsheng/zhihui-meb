@@ -35,6 +35,7 @@ public class MebGetResponse extends ApiResponse {
 	private Integer mebTypeId;
 	private String mebTypeName;
 	private String name;
+	private String password;
 	private Integer gender;
 	@XmlJavaTypeAdapter(value = XmlStr2DateAdapter.class)
 	@JsonSerialize(using = JsonStr2DateSerializer.class, include = JsonSerialize.Inclusion.NON_NULL)
@@ -90,6 +91,14 @@ public class MebGetResponse extends ApiResponse {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	public Integer getGender() {

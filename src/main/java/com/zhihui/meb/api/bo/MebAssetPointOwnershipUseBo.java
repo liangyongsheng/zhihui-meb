@@ -76,11 +76,7 @@ public class MebAssetPointOwnershipUseBo extends ApiBo<MebAssetPointOwnershipUse
 				addModel.setActualPoint(-point);
 				addModel.setValidBeginDate(new java.sql.Date((new Date()).getTime()));
 				addModel.setValidEndDate(new java.sql.Date(253402185600000L));
-				addModel.setOrigPartnerId(this.apiRequest.getTarPartnerId());
-				addModel.setOrigChainId(this.apiRequest.getTarChainId());
 				addModel.setOrigOrderId(this.apiRequest.getTarOrderId());
-				addModel.setTarPartnerId(this.apiRequest.getTarPartnerId());
-				addModel.setTarChainId(this.apiRequest.getTarChainId());
 				addModel.setTarOrderId(this.apiRequest.getTarOrderId());
 				addModel.setFlag(-2);// -1冻结垫付，-2使用垫付
 				addModel.setExtraInfo("积分使用垫付，垫付额为：" + point);
@@ -100,11 +96,7 @@ public class MebAssetPointOwnershipUseBo extends ApiBo<MebAssetPointOwnershipUse
 			addModel.setActualPoint(this.apiRequest.getPoint());
 			addModel.setValidBeginDate(new java.sql.Date((new Date()).getTime()));
 			addModel.setValidEndDate(new java.sql.Date(253402185600000L));
-			addModel.setOrigPartnerId(this.apiRequest.getTarPartnerId());
-			addModel.setOrigChainId(this.apiRequest.getTarChainId());
 			addModel.setOrigOrderId(this.apiRequest.getTarOrderId());
-			addModel.setTarPartnerId(this.apiRequest.getTarPartnerId());
-			addModel.setTarChainId(this.apiRequest.getTarChainId());
 			addModel.setTarOrderId(this.apiRequest.getTarOrderId());
 			addModel.setFlag(3); // 使用积分
 			addModel.setInnerDealInfo(MyObj2StrUtils.toJson(mp, 0));

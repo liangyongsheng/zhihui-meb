@@ -23,8 +23,6 @@ import com.zhihui.meb.api.response.MebAssetOwnershipAddResponse;
 public class MebAssetOwnershipAddRequest extends ApiRequest<MebAssetOwnershipAddResponse> {
 	private Long mebId;
 	private Integer mebAssetId;
-	private Integer origPartnerId;
-	private Integer origChainId;
 	private Long origOrderId;
 	private Integer sellerId;
 	private String extraInfo;
@@ -44,22 +42,6 @@ public class MebAssetOwnershipAddRequest extends ApiRequest<MebAssetOwnershipAdd
 
 	public void setMebAssetId(Integer mebAssetId) {
 		this.mebAssetId = mebAssetId;
-	}
-
-	public Integer getOrigPartnerId() {
-		return origPartnerId;
-	}
-
-	public void setOrigPartnerId(Integer origPartnerId) {
-		this.origPartnerId = origPartnerId;
-	}
-
-	public Integer getOrigChainId() {
-		return origChainId;
-	}
-
-	public void setOrigChainId(Integer origChainId) {
-		this.origChainId = origChainId;
 	}
 
 	public Long getOrigOrderId() {
@@ -110,9 +92,5 @@ public class MebAssetOwnershipAddRequest extends ApiRequest<MebAssetOwnershipAdd
 
 		if (this.mebAssetId == null || this.mebAssetId <= 0)
 			throw new CheckIllicitValueException("field: mebAssetId, value is illicit");
-
-		if (this.origPartnerId == null || this.origPartnerId <= 0)
-			throw new CheckIllicitValueException("field: origPartnerId, value is illicit");
 	}
-
 }

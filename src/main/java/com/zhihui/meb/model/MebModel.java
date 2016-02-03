@@ -23,6 +23,7 @@ public class MebModel {
 	@Transient
 	private String mebTypeName;
 	private String name;
+	private String password;
 	private Integer gender;
 	private Date birthday;
 	private Integer channelSellerId;
@@ -64,6 +65,14 @@ public class MebModel {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	public Integer getGender() {

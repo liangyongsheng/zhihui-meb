@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.zhihui.core.api.ApiBo;
 import com.zhihui.core.exception.BusinessException;
+import com.zhihui.core.util.MyAlgorithmUtils;
 import com.zhihui.core.util.MyIdCardUtils;
 import com.zhihui.core.util.MyStringUtils;
 import com.zhihui.meb.api.request.MebAddRequest;
@@ -56,6 +57,7 @@ public class MebAddBo extends ApiBo<MebAddRequest> {
 
 			MebModel mebModel = new MebModel();
 			mebModel.setName(this.apiRequest.getName());
+			mebModel.setPassword(MyAlgorithmUtils.MD5(this.apiRequest.getPassword()));
 			mebModel.setGender(gender.equals("M") ? 2 : gender.equals("F") ? 3 : 1);
 			mebModel.setBirthday(birthday == null ? null : new java.sql.Date(dfymd.parse(birthday).getTime()));
 			mebModel.setChannelSellerId(this.apiRequest.getChannelSellerId());
@@ -101,7 +103,7 @@ public class MebAddBo extends ApiBo<MebAddRequest> {
 				mebPropertyModel.setRemark(this.apiRequest.getRemark());
 				this.mebPropertyBo.add(mebPropertyModel);
 			}
-			
+
 			rsp.setMebId(mebModel.getMebId());
 			rsp.setSuccess(true);
 		} catch (Throwable e) {

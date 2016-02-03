@@ -24,8 +24,6 @@ import com.zhihui.meb.api.response.MebAssetOwnershipUseResponse;
 @JsonAutoDetect(creatorVisibility = Visibility.NONE, fieldVisibility = Visibility.ANY, getterVisibility = Visibility.NONE, isGetterVisibility = Visibility.NONE, setterVisibility = Visibility.NONE)
 public class MebAssetOwnershipUseRequest extends ApiRequest<MebAssetOwnershipUseResponse> {
 	private Long mebAssetOwnershipId;
-	private Integer tarPartnerId;
-	private Integer tarChainId;
 	private Long tarOrderId;
 	private String extraInfo;
 	private String remark;
@@ -36,22 +34,6 @@ public class MebAssetOwnershipUseRequest extends ApiRequest<MebAssetOwnershipUse
 
 	public void setMebAssetOwnershipId(Long mebAssetOwnershipId) {
 		this.mebAssetOwnershipId = mebAssetOwnershipId;
-	}
-
-	public Integer getTarPartnerId() {
-		return tarPartnerId;
-	}
-
-	public void setTarPartnerId(Integer tarPartnerId) {
-		this.tarPartnerId = tarPartnerId;
-	}
-
-	public Integer getTarChainId() {
-		return tarChainId;
-	}
-
-	public void setTarChainId(Integer tarChainId) {
-		this.tarChainId = tarChainId;
 	}
 
 	public Long getTarOrderId() {
@@ -91,12 +73,6 @@ public class MebAssetOwnershipUseRequest extends ApiRequest<MebAssetOwnershipUse
 	public void checkApiParams() throws CheckException {
 		if (this.mebAssetOwnershipId == null || this.mebAssetOwnershipId <= 0)
 			throw new CheckIllicitValueException("field: mebAssetOwnershipId, value is illicit");
-
-		if (this.tarPartnerId == null || this.tarPartnerId <= 0)
-			throw new CheckIllicitValueException("field: tarPartnerId, value is illicit");
-
-		if (this.tarChainId == null || this.tarChainId <= 0)
-			throw new CheckIllicitValueException("field: tarChainId, value is illicit");
 
 		if (this.tarOrderId == null || this.tarOrderId <= 0)
 			throw new CheckIllicitValueException("field: tarOrderId, value is illicit");

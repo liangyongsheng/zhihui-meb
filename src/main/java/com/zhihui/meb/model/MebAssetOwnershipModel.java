@@ -20,11 +20,7 @@ public class MebAssetOwnershipModel {
 	private long mebId;
 	private int mebAssetId;
 	private Integer flag;
-	private Integer origPartnerId;
-	private Integer origChainId;
 	private Long origOrderId;
-	private Integer tarPartnerId;
-	private Integer tarChainId;
 	private Long tarOrderId;
 	private String extraInfo;
 	private Timestamp createTime;
@@ -65,44 +61,12 @@ public class MebAssetOwnershipModel {
 		this.flag = flag;
 	}
 
-	public Integer getOrigPartnerId() {
-		return origPartnerId;
-	}
-
-	public void setOrigPartnerId(Integer origPartnerId) {
-		this.origPartnerId = origPartnerId;
-	}
-
-	public Integer getOrigChainId() {
-		return origChainId;
-	}
-
-	public void setOrigChainId(Integer origChainId) {
-		this.origChainId = origChainId;
-	}
-
 	public Long getOrigOrderId() {
 		return origOrderId;
 	}
 
 	public void setOrigOrderId(Long origOrderId) {
 		this.origOrderId = origOrderId;
-	}
-
-	public Integer getTarPartnerId() {
-		return tarPartnerId;
-	}
-
-	public void setTarPartnerId(Integer tarPartnerId) {
-		this.tarPartnerId = tarPartnerId;
-	}
-
-	public Integer getTarChainId() {
-		return tarChainId;
-	}
-
-	public void setTarChainId(Integer tarChainId) {
-		this.tarChainId = tarChainId;
 	}
 
 	public Long getTarOrderId() {

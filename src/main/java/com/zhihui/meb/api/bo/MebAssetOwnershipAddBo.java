@@ -35,7 +35,7 @@ public class MebAssetOwnershipAddBo extends ApiBo<MebAssetOwnershipAddRequest> {
 		try {
 			MebAssetOwnershipAddResponse rsp = (MebAssetOwnershipAddResponse) this.apiResponse;
 			rsp.setSuccess(false);
-			
+
 			Long businessId = null;
 			// check: mebAssetId
 			MebAssetModel mebAssetModel = this.mebAssetBo.getById(this.apiRequest.getMebAssetId());
@@ -46,9 +46,7 @@ public class MebAssetOwnershipAddBo extends ApiBo<MebAssetOwnershipAddRequest> {
 			if (mebAssetModel.getMebAssetTypeId() != 1) {
 				MebAssetOwnershipModel mebAssetOwnershipModel = new MebAssetOwnershipModel();
 				mebAssetOwnershipModel.setMebId(this.apiRequest.getMebId());
-				mebAssetOwnershipModel.setOrigPartnerId(this.apiRequest.getOrigPartnerId());
 				mebAssetOwnershipModel.setMebAssetId(this.apiRequest.getMebAssetId());
-				mebAssetOwnershipModel.setOrigChainId(this.apiRequest.getOrigChainId());
 				mebAssetOwnershipModel.setOrigOrderId(this.apiRequest.getOrigOrderId());
 				mebAssetOwnershipModel.setFlag(1);
 				mebAssetOwnershipModel.setExtraInfo(this.apiRequest.getExtraInfo());

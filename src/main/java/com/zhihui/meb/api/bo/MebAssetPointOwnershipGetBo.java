@@ -44,11 +44,7 @@ public class MebAssetPointOwnershipGetBo extends ApiBo<MebAssetPointOwnershipGet
 				mapo.setValidBeginDate(e.getValidBeginDate());
 				mapo.setValidEndDate(e.getValidEndDate());
 				mapo.setSellerId(e.getSellerId());
-				mapo.setOrigPartnerId(e.getOrigPartnerId());
-				mapo.setOrigChainId(e.getOrigChainId());
 				mapo.setOrigOrderId(e.getOrigOrderId());
-				mapo.setTarPartnerId(e.getTarPartnerId());
-				mapo.setTarChainId(e.getTarChainId());
 				mapo.setTarOrderId(e.getTarOrderId());
 				mapo.setFlag(e.getFlag());
 				mapo.setExtraInfo(e.getExtraInfo());
