@@ -19,10 +19,10 @@ import javax.ws.rs.core.MediaType;
 import org.springframework.stereotype.Controller;
 
 import com.zhihui.core.api.ApiBo;
-import com.zhihui.core.api.ApiException;
 import com.zhihui.core.api.ApiNoMethodException;
 import com.zhihui.core.api.ApiResponse;
 import com.zhihui.core.context.MyContext;
+import com.zhihui.core.exception.CoreException;
 
 @Controller
 @Path("/meb")
@@ -95,10 +95,10 @@ public class Rest {
 
 		} catch (Throwable e) {
 			ApiResponse arp = new ApiResponse();
-			arp.setCode("Default");
+			arp.setCode("default");
 			arp.setMsg(e.getMessage());
-			if (e instanceof ApiException) {
-				ApiException ae = (ApiException) e;
+			if (e instanceof CoreException) {
+				CoreException ae = (CoreException) e;
 				arp.setCode(ae.getCode());
 				arp.setSubCode(ae.getSubCode());
 				arp.setSubMsg(e.getMessage());
