@@ -38,8 +38,8 @@ public class MebAssetOwnershipGetBo extends ApiBo<MebAssetOwnershipGetRequest> {
 		try {
 			MebAssetOwnershipGetResponse rsp = (MebAssetOwnershipGetResponse) this.apiResponse;
 			rsp.setSuccess(false);
-			
-			List<MebAssetOwnership> rs = new ArrayList<MebAssetOwnership>();
+			rsp.setMebAssetOwnerships(new ArrayList<MebAssetOwnership>());
+
 			if (this.apiRequest.getMebAssetTypeId() != null && this.apiRequest.getMebAssetTypeId() == 1)
 				throw new BusinessException("积分权益是不通过此类方法操作的，请用meb.asset.point.ownership.*方法");
 
@@ -98,12 +98,11 @@ public class MebAssetOwnershipGetBo extends ApiBo<MebAssetOwnershipGetRequest> {
 					f = f == false ? f : t.checkChannelSellerId(this.apiRequest.getChannelSellerId());
 					f = f == false ? f : t.checkDate(this.apiRequest.getBeginDate(), this.apiRequest.getEndDate());
 					if (f)
-						rs.add(mao);
+						rsp.getMebAssetOwnerships().add(mao);
 				} else
-					rs.add(mao);
+					rsp.getMebAssetOwnerships().add(mao);
 			}
 
-			rsp.setMebAssetOwnerships(rs);
 			rsp.setSuccess(true);
 		} catch (Throwable e) {
 			throw new BusinessException(e);

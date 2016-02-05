@@ -36,6 +36,7 @@ public class MebGetBo extends ApiBo<MebGetRequest> {
 		try {
 			MebGetResponse rsp = (MebGetResponse) this.apiResponse;
 			rsp.setSuccess(false);
+			rsp.setMebProperties(new ArrayList<MebProperty>());
 
 			long mebId = 0;
 			int mebPropertTypeId = 0;
@@ -137,7 +138,6 @@ public class MebGetBo extends ApiBo<MebGetRequest> {
 			rsp.setRemark(mebModel.getRemark());
 
 			if (this.apiRequest.getSimple() == null || !this.apiRequest.getSimple()) {
-				rsp.setMebProperties(new ArrayList<MebProperty>());
 				List<MebPropertyModel> mebPropertyModels = this.mebPropertyBo.getByMebId(mebModel.getMebId(), null);
 				for (int i = 0; i < mebPropertyModels.size(); i++) {
 					MebProperty mp = new MebProperty();
