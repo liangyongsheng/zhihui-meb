@@ -40,8 +40,7 @@ public class MebAssetPointOwnershipBo extends BoBase {
 	}
 
 	public MebAssetPointOwnershipModel update(MebAssetPointOwnershipModel mebAssetPointOwnershipModel) {
-		if (mebAssetPointOwnershipModel.getLastReviseTime() == null)
-			mebAssetPointOwnershipModel.setLastReviseTime(new Timestamp((new Date()).getTime()));
+		mebAssetPointOwnershipModel.setLastReviseTime(new Timestamp((new Date()).getTime()));
 		this.mebAssetPointOwnershipDao.update(mebAssetPointOwnershipModel);
 		return mebAssetPointOwnershipModel;
 	}

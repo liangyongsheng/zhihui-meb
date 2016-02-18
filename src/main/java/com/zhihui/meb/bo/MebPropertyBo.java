@@ -28,7 +28,7 @@ public class MebPropertyBo extends BoBase {
 	}
 
 	public MebPropertyModel add(MebPropertyModel mebPropertyModel) {
-		if (mebPropertyModel.getFlag() == null || mebPropertyModel.getFlag() <= 0)
+		if (mebPropertyModel.getFlag() == null)
 			mebPropertyModel.setFlag(1);
 		if (mebPropertyModel.getLastReviseTime() == null)
 			mebPropertyModel.setLastReviseTime(new Timestamp((new Date()).getTime()));
@@ -39,8 +39,7 @@ public class MebPropertyBo extends BoBase {
 	}
 
 	public MebPropertyModel update(MebPropertyModel mebPropertyModel) {
-		if (mebPropertyModel.getLastReviseTime() == null)
-			mebPropertyModel.setLastReviseTime(new Timestamp((new Date()).getTime()));
+		mebPropertyModel.setLastReviseTime(new Timestamp((new Date()).getTime()));
 		this.mebPropertyDao.update(mebPropertyModel);
 		return mebPropertyModel;
 	}

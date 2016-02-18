@@ -27,11 +27,11 @@ public class MebBo extends BoBase {
 	}
 
 	public MebModel add(MebModel mebModel) {
-		if (mebModel.getGender() == null || mebModel.getGender() <= 0)
-			mebModel.setGender(1);
-		if (mebModel.getMebTypeId() <= 0)
+		if (mebModel.getMebTypeId() == null)
 			mebModel.setMebTypeId(1);
-		if (mebModel.getFlag() == null || mebModel.getFlag() <= 0)
+		if (mebModel.getGender() == null)
+			mebModel.setGender(1);
+		if (mebModel.getFlag() == null)
 			mebModel.setFlag(1);
 		if (mebModel.getLastReviseTime() == null)
 			mebModel.setLastReviseTime(new Timestamp((new Date()).getTime()));
@@ -42,8 +42,7 @@ public class MebBo extends BoBase {
 	}
 
 	public MebModel update(MebModel mebModel) {
-		if (mebModel.getLastReviseTime() == null)
-			mebModel.setLastReviseTime(new Timestamp((new Date()).getTime()));
+		mebModel.setLastReviseTime(new Timestamp((new Date()).getTime()));
 		this.mebDao.update(mebModel);
 		return mebModel;
 	}

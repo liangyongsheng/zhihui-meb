@@ -45,8 +45,7 @@ public class MebAssetBo extends BoBase {
 	}
 
 	public MebAssetModel update(MebAssetModel mebAssetModel) {
-		if (mebAssetModel.getLastReviseTime() == null)
-			mebAssetModel.setLastReviseTime(new Timestamp((new Date()).getTime()));
+		mebAssetModel.setLastReviseTime(new Timestamp((new Date()).getTime()));
 		this.mebAssetDao.update(mebAssetModel);
 		return mebAssetModel;
 	}

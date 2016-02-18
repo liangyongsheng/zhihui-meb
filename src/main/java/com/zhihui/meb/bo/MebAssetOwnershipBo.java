@@ -28,7 +28,7 @@ public class MebAssetOwnershipBo extends BoBase {
 	}
 
 	public MebAssetOwnershipModel add(MebAssetOwnershipModel mebAssetOwnershipModel) {
-		if (mebAssetOwnershipModel.getFlag() == null || mebAssetOwnershipModel.getFlag() <= 0)
+		if (mebAssetOwnershipModel.getFlag() == null)
 			mebAssetOwnershipModel.setFlag(1);
 		if (mebAssetOwnershipModel.getLastReviseTime() == null)
 			mebAssetOwnershipModel.setLastReviseTime(new Timestamp((new Date()).getTime()));
@@ -39,8 +39,7 @@ public class MebAssetOwnershipBo extends BoBase {
 	}
 
 	public MebAssetOwnershipModel update(MebAssetOwnershipModel mebAssetOwnershipModel) {
-		if (mebAssetOwnershipModel.getLastReviseTime() == null)
-			mebAssetOwnershipModel.setLastReviseTime(new Timestamp((new Date()).getTime()));
+		mebAssetOwnershipModel.setLastReviseTime(new Timestamp((new Date()).getTime()));
 		this.mebAssetOwnershipDao.update(mebAssetOwnershipModel);
 		return mebAssetOwnershipModel;
 	}

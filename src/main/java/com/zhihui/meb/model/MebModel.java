@@ -19,7 +19,7 @@ public class MebModel {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long mebId;
-	private int mebTypeId;
+	private Integer mebTypeId;
 	@Transient
 	private String mebTypeName;
 	private String name;
@@ -43,11 +43,11 @@ public class MebModel {
 		this.mebId = mebId;
 	}
 
-	public int getMebTypeId() {
+	public Integer getMebTypeId() {
 		return mebTypeId;
 	}
 
-	public void setMebTypeId(int mebTypeId) {
+	public void setMebTypeId(Integer mebTypeId) {
 		this.mebTypeId = mebTypeId;
 	}
 
