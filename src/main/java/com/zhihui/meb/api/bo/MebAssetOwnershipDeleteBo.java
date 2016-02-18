@@ -36,15 +36,15 @@ public class MebAssetOwnershipDeleteBo extends ApiBo<MebAssetOwnershipDeleteRequ
 
 			MebAssetOwnershipModel mebAssetOwnershipModel = this.mebAssetOwnershipBo.getById(this.apiRequest.getMebAssetOwnershipId());
 			if (mebAssetOwnershipModel == null)
-				throw new BusinessException("不拥用此权益");
+				throw new BusinessException("不拥用此权益。");
 			if (mebAssetOwnershipModel.getFlag() == null || mebAssetOwnershipModel.getFlag() != 1)
-				throw new BusinessException("此状态不允许删除");
+				throw new BusinessException("此状态不允许删除。");
 
 			MebAssetModel mebAssetModel = this.mebAssetBo.getById(mebAssetOwnershipModel.getMebAssetId());
 			if (mebAssetModel == null)
-				throw new BusinessException("不存在此权益");
+				throw new BusinessException("不存在此权益。");
 			if (mebAssetModel.getMebAssetTypeId() == 1)
-				throw new BusinessException("积分权益是不通过此类方法操作的，请用meb.asset.point.ownership.*方法");
+				throw new BusinessException("积分权益是不通过此类方法操作的，请用meb.asset.point.ownership.*方法。");
 
 			mebAssetOwnershipModel.setFlag(0);
 			mebAssetOwnershipModel.setLastReviseTime(new Timestamp((new Date()).getTime()));

@@ -36,11 +36,11 @@ public class MebAssetPointOwnershipUseBo extends ApiBo<MebAssetPointOwnershipUse
 			rsp.setSuccess(false);
 
 			if (this.apiRequest.getPoint() <= 0)
-				throw new BusinessException("使用的积分值一定大于零");
+				throw new BusinessException("使用的积分值一定大于零。");
 
 			MebAssetPointSummary maps = this.mebAssetPointOwnershipBo.getSummaryByMebId(this.apiRequest.getMebId());
 			if (maps.getCanUsePoint().longValue() < this.apiRequest.getPoint())
-				throw new BusinessException("积分不够");
+				throw new BusinessException("积分不够。");
 
 			int point = this.apiRequest.getPoint();
 			Map<Long, Integer> mp = new HashMap<Long, Integer>();

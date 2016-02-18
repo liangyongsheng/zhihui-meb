@@ -29,7 +29,7 @@ public class MebResetpwdBo extends ApiBo<MebResetpwdResquest> {
 
 			MebModel mebModel = this.mebBo.getById(this.apiRequest.getMebId());
 			if (mebModel == null)
-				throw new BusinessException("不存在此会员");
+				throw new BusinessException("不存在此会员。");
 
 			mebModel.setPassword(MyAlgorithmUtils.MD5("123456"));
 			rsp.setSuccess(true);

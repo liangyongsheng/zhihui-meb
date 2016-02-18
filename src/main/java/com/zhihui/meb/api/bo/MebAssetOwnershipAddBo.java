@@ -40,7 +40,7 @@ public class MebAssetOwnershipAddBo extends ApiBo<MebAssetOwnershipAddRequest> {
 			// check: mebAssetId
 			MebAssetModel mebAssetModel = this.mebAssetBo.getById(this.apiRequest.getMebAssetId());
 			if (mebAssetModel == null)
-				throw new BusinessException("不存在此权益");
+				throw new BusinessException("不存在此权益。");
 
 			// 非积分权益添加
 			if (mebAssetModel.getMebAssetTypeId() != 1) {

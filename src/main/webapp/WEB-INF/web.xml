@@ -14,14 +14,15 @@
 	</context-param>
 	<context-param>
 		<param-name>log4jConfigLocation</param-name>
-		<param-value>classpath:log4j.properties</param-value>
+		<param-value>classpath:meb.log4j.properties</param-value>
 	</context-param>
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>
-			classpath:context.cfg.xml,
-			classpath:mysql.connection.cfg.xml,
-			classpath:*.api.cfg.xml
+			classpath:meb.api.cfg.xml,
+			classpath:meb.aspect.cfg.xml,
+			classpath:meb.context.cfg.xml,
+			classpath:meb.mysql.connection.cfg.xml
 		</param-value>
 	</context-param>
 	<listener>

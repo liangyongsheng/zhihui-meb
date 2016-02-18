@@ -37,7 +37,7 @@ public class MebAssetAddBo extends ApiBo<MebAssetAddRequest> {
 			// check: mebAssetTypeId
 			MebAssetTypeModel mebAssetTypeModel = this.mebAssetTypeBo.getById(this.apiRequest.getMebAssetTypeId());
 			if (mebAssetTypeModel == null)
-				throw new BusinessException("field: mebAssetTypeId, the value is not existed");
+				throw new BusinessException("field: mebAssetTypeId, the value is not existed.");
 
 			MebAssetModel mebAssetModel = new MebAssetModel();
 			mebAssetModel.setMebAssetTypeId(this.apiRequest.getMebAssetTypeId());

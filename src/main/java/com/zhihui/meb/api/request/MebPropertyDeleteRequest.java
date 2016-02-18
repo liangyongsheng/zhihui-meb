@@ -54,10 +54,10 @@ public class MebPropertyDeleteRequest extends ApiRequest<MebPropertyDeleteRespon
 	@Override
 	public void checkApiParams() throws CheckException {
 		if (this.mebPropertyId == null || this.mebPropertyId <= 0)
-			throw new CheckIllicitValueException("field: mebPropertyId, value is illicit");
+			throw new CheckIllicitValueException("field: mebPropertyId, value is illicit.");
 
 		if (MyStringUtils.isEmpty(this.remark))
-			throw new CheckEmptyException("field: remark, value is empty");
+			throw new CheckEmptyException("field: remark, value is empty.");
 	}
 
 }

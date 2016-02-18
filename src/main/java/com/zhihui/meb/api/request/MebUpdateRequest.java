@@ -92,13 +92,13 @@ public class MebUpdateRequest extends ApiRequest<MebUpdateResponse> {
 	@Override
 	public void checkApiParams() throws CheckException {
 		if (this.mebId != null && this.mebId <= 0)
-			throw new CheckIllicitValueException("field: mebId, value is illicit");
+			throw new CheckIllicitValueException("field: mebId, value is illicit.");
 
 		if (this.name != null && MyStringUtils.isEmpty(this.name))
-			throw new CheckIllicitValueException("field: name, value is illicit");
+			throw new CheckIllicitValueException("field: name, value is illicit.");
 
 		if (this.gender != null && (this.gender <= 0 || this.gender >= 4))
-			throw new CheckIllicitValueException("field: gender, value is illicit");
+			throw new CheckIllicitValueException("field: gender, value is illicit.");
 
 		SimpleDateFormat df = new SimpleDateFormat("yyyy");
 		if (this.birthday != null) {
@@ -106,7 +106,7 @@ public class MebUpdateRequest extends ApiRequest<MebUpdateResponse> {
 				int year = Integer.parseInt(df.format(this.birthday));
 				int yearNow = Integer.parseInt(df.format(new Date()));
 				if (year < MyIdCardUtils.MAINLAND_MIN_YEAR || year >= yearNow)
-					throw new CheckIllicitValueException("field: birthday, value is illicit");
+					throw new CheckIllicitValueException("field: birthday, value is illicit.");
 			} catch (Throwable e) {
 				throw new CheckIllicitValueException(e);
 			}

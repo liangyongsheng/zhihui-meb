@@ -65,14 +65,14 @@ public class MebGetRequest extends ApiRequest<MebGetResponse> {
 		// group-1:mebId
 		if (this.mebId != null) {
 			if (this.mebId <= 0)
-				throw new CheckIllicitValueException("field: mebId, value is illicit");
+				throw new CheckIllicitValueException("field: mebId, value is illicit.");
 		}
 		// group-2:idStr
 		else if (!MyStringUtils.isEmpty(this.idStr)) {
 		}
 		// exception
 		else
-			throw new CheckEmptyException("fields are empty");
+			throw new CheckEmptyException("fields are empty.");
 
 		this.idStr = this.idStr == null ? this.idStr : this.idStr.trim();
 	}

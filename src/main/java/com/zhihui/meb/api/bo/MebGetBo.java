@@ -109,7 +109,7 @@ public class MebGetBo extends ApiBo<MebGetRequest> {
 					mebId = mebPropertyModels.size() <= 0 ? mebId : mebPropertyModels.get(0).getMebId();
 					for (MebPropertyModel e : mebPropertyModels) {
 						if (e.getMebId() != mebId)
-							throw new BusinessException("More than one member owns the idStr, can not identify which one");
+							throw new BusinessException("More than one member owns the idStr, can not identify which one.");
 					}
 				}
 			}

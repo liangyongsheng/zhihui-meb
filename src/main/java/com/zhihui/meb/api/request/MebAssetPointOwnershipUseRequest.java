@@ -101,22 +101,22 @@ public class MebAssetPointOwnershipUseRequest extends ApiRequest<MebAssetPointOw
 	@Override
 	public void checkApiParams() throws CheckException {
 		if (this.mebId == null || this.mebId <= 0)
-			throw new CheckIllicitValueException("field: mebId, value is illicit");
+			throw new CheckIllicitValueException("field: mebId, value is illicit.");
 
 		if (this.point == null || this.point <= 0)
-			throw new CheckIllicitValueException("field: point, value is illicit");
+			throw new CheckIllicitValueException("field: point, value is illicit.");
 
 		if (this.beginDate == null)
-			throw new CheckIllicitValueException("field: beginDate, value is illicit");
+			throw new CheckIllicitValueException("field: beginDate, value is illicit.");
 
 		if (this.endDate == null)
-			throw new CheckIllicitValueException("field: endDate, value is illicit");
+			throw new CheckIllicitValueException("field: endDate, value is illicit.");
 
 		if (this.tarOrderId == null || this.tarOrderId <= 0)
-			throw new CheckIllicitValueException("field: tarOrderId, value is illicit");
+			throw new CheckIllicitValueException("field: tarOrderId, value is illicit.");
 
 		if (MyStringUtils.isEmpty(this.remark))
-			throw new CheckEmptyException("field: remark, value is empty");
+			throw new CheckEmptyException("field: remark, value is empty.");
 	}
 
 }

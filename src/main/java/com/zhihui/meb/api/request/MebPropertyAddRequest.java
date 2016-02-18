@@ -71,13 +71,13 @@ public class MebPropertyAddRequest extends ApiRequest<MebPropertyAddResponse> {
 	@Override
 	public void checkApiParams() throws CheckException {
 		if (this.mebId == null || this.mebId <= 0)
-			throw new CheckIllicitValueException("field: mebId, value is illicit");
+			throw new CheckIllicitValueException("field: mebId, value is illicit.");
 
 		if (this.mebPropertyTypeId == null || this.mebPropertyTypeId <= 0)
-			throw new CheckIllicitValueException("field: mebPropertyTypeId, value is illicit");
+			throw new CheckIllicitValueException("field: mebPropertyTypeId, value is illicit.");
 
 		if (MyStringUtils.isEmpty(this.value))
-			throw new CheckIllicitValueException("field: value, value is illicit");
+			throw new CheckIllicitValueException("field: value, value is illicit.");
 	}
 
 }

@@ -40,14 +40,14 @@ public class MebAddBo extends ApiBo<MebAddRequest> {
 			// test the idCard
 			List<MebPropertyModel> tmps = this.mebPropertyBo.getByValue(11, this.apiRequest.getIdCard());
 			if (tmps.size() > 0)
-				throw new BusinessException("idCard is existed");
+				throw new BusinessException("idCard is existed.");
 			tmps = this.mebPropertyBo.getByValue(101, this.apiRequest.getMobile());
 			if (tmps.size() > 0)
-				throw new BusinessException("mobile is existed");
+				throw new BusinessException("mobile is existed.");
 			if (!MyStringUtils.isEmpty(this.apiRequest.getEmail())) {
 				tmps = this.mebPropertyBo.getByValue(111, this.apiRequest.getEmail());
 				if (tmps.size() > 0)
-					throw new BusinessException("email is existed");
+					throw new BusinessException("email is existed.");
 			}
 
 			String gender = MyIdCardUtils.getGenderByIdCard(this.apiRequest.getIdCard());

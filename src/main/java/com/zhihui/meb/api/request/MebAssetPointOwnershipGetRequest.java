@@ -52,6 +52,6 @@ public class MebAssetPointOwnershipGetRequest extends ApiRequest<MebAssetPointOw
 	@Override
 	public void checkApiParams() throws CheckException {
 		if (this.mebId == null || this.mebId <= 0)
-			throw new CheckIllicitValueException("field: mebId, value is illicit");
+			throw new CheckIllicitValueException("field: mebId, value is illicit.");
 	}
 }

@@ -54,9 +54,9 @@ public class MebAssetOwnershipDeleteRequest extends ApiRequest<MebAssetOwnership
 	@Override
 	public void checkApiParams() throws CheckException {
 		if (this.mebAssetOwnershipId == null || this.mebAssetOwnershipId <= 0)
-			throw new CheckIllicitValueException("field: mebAssetOwnershipId, value is illicit");
+			throw new CheckIllicitValueException("field: mebAssetOwnershipId, value is illicit.");
 
 		if (MyStringUtils.isEmpty(this.remark))
-			throw new CheckEmptyException("field: remark, value is empty");
+			throw new CheckEmptyException("field: remark, value is empty.");
 	}
 }

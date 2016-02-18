@@ -35,9 +35,9 @@ public class MebAssetPointOwnershipAddBo extends ApiBo<MebAssetPointOwnershipAdd
 
 			MebAssetPointTypeModel mebAssetPointTypeModel = this.mebAssetPointTypeBo.getById(this.apiRequest.getMebAssetPointTypeId());
 			if (mebAssetPointTypeModel == null)
-				throw new BusinessException("不存在此积分权益类型");
+				throw new BusinessException("不存在此积分权益类型。");
 			if (mebAssetPointTypeModel.getInnerOnly() != null && mebAssetPointTypeModel.getInnerOnly() == true)
-				throw new BusinessException("此积分权益类型，只用于内部程序处理");
+				throw new BusinessException("此积分权益类型，只用于内部程序处理。");
 
 			MebAssetPointOwnershipModel mebAssetPointOwnershipModel = new MebAssetPointOwnershipModel();
 			mebAssetPointOwnershipModel.setMebId(this.apiRequest.getMebId());

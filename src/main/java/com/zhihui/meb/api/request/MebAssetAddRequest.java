@@ -110,21 +110,21 @@ public class MebAssetAddRequest extends ApiRequest<MebAssetAddResponse> {
 	@Override
 	public void checkApiParams() throws CheckException {
 		if (MyStringUtils.isEmpty(this.name))
-			throw new CheckEmptyException("field: name is empty");
+			throw new CheckEmptyException("field: name is empty.");
 
 		if (this.mebAssetTypeId == null || this.mebAssetTypeId <= 0)
-			throw new CheckIllicitValueException("field: mebAssetTypeId is illicit");
+			throw new CheckIllicitValueException("field: mebAssetTypeId is illicit.");
 
 		if (this.faceValue == null || this.faceValue <= 0)
-			throw new CheckIllicitValueException("field: faceValue is illicit");
+			throw new CheckIllicitValueException("field: faceValue is illicit.");
 
 		if (this.validBeginDate == null)
-			throw new CheckIllicitValueException("field: validBeginDate is illicit");
+			throw new CheckIllicitValueException("field: validBeginDate is illicit.");
 
 		if (this.validEndDate == null)
-			throw new CheckIllicitValueException("field: validEndDate is illicit");
+			throw new CheckIllicitValueException("field: validEndDate is illicit.");
 
 		if (this.validBeginDate.getTime() > this.validEndDate.getTime())
-			throw new CheckIllicitValueException("validBeginDate should be larger than validEndDate");
+			throw new CheckIllicitValueException("validBeginDate should be larger than validEndDate.");
 	}
 }

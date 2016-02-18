@@ -36,7 +36,7 @@ public class MebPropertyDeleteBo extends ApiBo<MebPropertyDeleteRequest> {
 
 			MebPropertyModel mebPropertyModel = this.mebPropertyBo.getById(this.apiRequest.getMebPropertyId());
 			if (mebPropertyModel == null)
-				throw new BusinessException("field: mebPropertyId, this value is not existed");
+				throw new BusinessException("field: mebPropertyId, this value is not existed.");
 
 			// log original objStr
 			String beforeLog = MyObj2StrUtils.toJson(mebPropertyModel, 0);

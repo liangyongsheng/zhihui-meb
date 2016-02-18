@@ -63,10 +63,10 @@ public class MebPropertyUpdateRequest extends ApiRequest<MebPropertyUpdateRespon
 	@Override
 	public void checkApiParams() throws CheckException {
 		if (this.mebPropertyId == null || this.mebPropertyId <= 0)
-			throw new CheckIllicitValueException("field: mebPropertyId, value is illicit");
+			throw new CheckIllicitValueException("field: mebPropertyId, value is illicit.");
 
 		if (MyStringUtils.isEmpty(this.value))
-			throw new CheckEmptyException("field: value is empty");
+			throw new CheckEmptyException("field: value is empty.");
 		this.value = this.value.trim();
 	}
 }

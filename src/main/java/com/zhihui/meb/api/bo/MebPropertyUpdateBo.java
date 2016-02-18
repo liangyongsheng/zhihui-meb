@@ -36,7 +36,7 @@ public class MebPropertyUpdateBo extends ApiBo<MebPropertyUpdateRequest> {
 
 			MebPropertyModel mebPropertyModel = this.mebPropertyBo.getById(this.apiRequest.getMebPropertyId());
 			if (mebPropertyModel == null)
-				throw new BusinessException("do not exist this property");
+				throw new BusinessException("do not exist this property.");
 
 			// log original objStr
 			String beforeLog = MyObj2StrUtils.toJson(mebPropertyModel, 0);

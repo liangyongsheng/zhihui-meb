@@ -38,7 +38,7 @@ public class MebUpdateBo extends ApiBo<MebUpdateRequest> {
 
 			MebModel mebModel = this.mebBo.getById(this.apiRequest.getMebId());
 			if (mebModel == null)
-				throw new BusinessException("meb is not existed");
+				throw new BusinessException("meb is not existed.");
 
 			// log original objStr
 			String beforeLog = MyObj2StrUtils.toJson(mebModel, 0);

@@ -42,7 +42,7 @@ public class MebPropertyAddBo extends ApiBo<MebPropertyAddRequest> {
 
 			MebModel mebModel = this.mebBo.getById(this.apiRequest.getMebId());
 			if (mebModel == null)
-				throw new BusinessException("field: mebId, the value is not existed");
+				throw new BusinessException("field: mebId, the value is not existed.");
 
 			boolean isLicit = false;
 			List<MebPropertyTypeModel> mebPropertyTypeModels = this.mebPropertyTypeBo.getAll();
@@ -53,7 +53,7 @@ public class MebPropertyAddBo extends ApiBo<MebPropertyAddRequest> {
 				}
 			}
 			if (isLicit == false)
-				throw new BusinessException("field: mebPropertyTypeId, value is illicit");
+				throw new BusinessException("field: mebPropertyTypeId, value is illicit.");
 
 			MebPropertyModel mebPropertyModel = new MebPropertyModel();
 			mebPropertyModel.setMebId(this.apiRequest.getMebId());

@@ -119,9 +119,9 @@ public class MebAssetOwnershipGetRequest extends ApiRequest<MebAssetOwnershipGet
 	@Override
 	public void checkApiParams() throws CheckException {
 		if (this.mebId == null || this.mebId <= 0)
-			throw new CheckIllicitValueException("field: mebId, value is illicit");
+			throw new CheckIllicitValueException("field: mebId, value is illicit.");
 
 		if (this.beginDate != null && this.endDate != null && this.beginDate.getTime() > this.endDate.getTime())
-			throw new CheckIllicitValueException("beginDate should be larger than endDate");
+			throw new CheckIllicitValueException("beginDate should be larger than endDate.");
 	}
 }

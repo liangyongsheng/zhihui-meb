@@ -43,7 +43,7 @@ public class MebAssetGetRequest extends ApiRequest<MebAssetGetResponse> {
 	@Override
 	public void checkApiParams() throws CheckException {
 		if (this.mebAssetId == null || this.mebAssetId <= 0)
-			throw new CheckIllicitValueException("field: mebAssetId, value is illicit");
+			throw new CheckIllicitValueException("field: mebAssetId, value is illicit.");
 	}
 
 }

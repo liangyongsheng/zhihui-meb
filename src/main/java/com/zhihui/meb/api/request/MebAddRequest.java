@@ -109,29 +109,29 @@ public class MebAddRequest extends ApiRequest<MebAddResponse> {
 	@Override
 	public void checkApiParams() throws CheckException {
 		if (MyStringUtils.isEmpty(this.name))
-			throw new CheckEmptyException("field: name is empty");
+			throw new CheckEmptyException("field: name is empty.");
 
 		if (MyStringUtils.isEmpty(this.password))
-			throw new CheckEmptyException("field: password is empty");
+			throw new CheckEmptyException("field: password is empty.");
 
 		if (this.sellerId == null || this.sellerId <= 0)
-			throw new CheckIllicitValueException("field: sellerId is illicit");
+			throw new CheckIllicitValueException("field: sellerId is illicit.");
 
 		if (MyStringUtils.isEmpty(this.idCard))
-			throw new CheckEmptyException("field: idCard is empty");
+			throw new CheckEmptyException("field: idCard is empty.");
 		if (!MyIdCardUtils.validateCard(this.idCard.trim().toUpperCase()))
-			throw new CheckIllicitValueException("field: idCard is illicit");
+			throw new CheckIllicitValueException("field: idCard is illicit.");
 		this.idCard = this.idCard.trim().toUpperCase();
 
 		if (MyStringUtils.isEmpty(this.mobile))
-			throw new CheckEmptyException("field: mobile is empty");
+			throw new CheckEmptyException("field: mobile is empty.");
 		if (!this.mobile.trim().matches("1[3458][0-9]{9}"))
-			throw new CheckIllicitValueException("field: mobile is illicit");
+			throw new CheckIllicitValueException("field: mobile is illicit.");
 		this.mobile = this.mobile.trim();
 
 		if (!MyStringUtils.isEmpty(this.email)) {
 			if (!(this.email.trim().matches("[a-zA-Z\\.@]+") && this.email.trim().matches("[^@]+@[^@]+")))
-				throw new CheckIllicitValueException("field: email is illicit");
+				throw new CheckIllicitValueException("field: email is illicit.");
 		}
 
 		this.email = this.email == null ? this.email : this.email.trim();

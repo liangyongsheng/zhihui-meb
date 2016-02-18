@@ -32,7 +32,7 @@ public class MebAssetUpdateBo extends ApiBo<MebAssetUpdateRequest> {
 			// check: mebAssetId
 			MebAssetModel mebAssetModel = this.mebAssetBo.getById(this.apiRequest.getMebAssetId());
 			if (mebAssetModel == null)
-				throw new BusinessException("field: mebAssetId, the value is not existed");
+				throw new BusinessException("field: mebAssetId, the value is not existed.");
 
 			mebAssetModel.setName(this.apiRequest.getName());
 			mebAssetModel.setValidBeginDate(new java.sql.Date(this.apiRequest.getValidBeginDate().getTime()));
